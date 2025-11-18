@@ -17,7 +17,7 @@ const Login = () => {
       <div className="w-full max-w-md text-center px-6">
         
         <img
-          src="/dicoding-logo.png"
+          src="/dicoding-logos.png"
           alt="Dicoding Logo"
           className="w-64 mx-auto mb-10"
         />
