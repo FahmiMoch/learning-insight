@@ -1,3 +1,4 @@
+// src/services/insight.js
 import api from "./api";
 
 export const getAllInsights = async () => {
@@ -10,6 +11,7 @@ export const getAllInsights = async () => {
   }
 };
 
+
 export const getInsightByUser = async (userId) => {
   try {
     const response = await api.get(`/insights/${userId}`);
@@ -19,6 +21,7 @@ export const getInsightByUser = async (userId) => {
     throw error;
   }
 };
+
 
 export const submitInsight = async (userId, payload) => {
   try {

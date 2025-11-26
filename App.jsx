@@ -5,20 +5,30 @@ import Login from "./src/features/auth/Login";
 import MainDashboard from "./src/pages/MainDashboard";
 import InsightDashboard from "./src/pages/InsightDashboard";
 
-const App = () => {
+import { AuthProvider, useAuth } from "./src/contexts/AuthContext";
+import { InsightProvider } from "./src/contexts/InsightContext";
+
+// Wrapper untuk InsightProvider yang membutuhkan userId
+const AppWrapper = () => {
+  const { user } = useAuth();
   return (
-    <BrowserRouter>
+    <InsightProvider userId={user?.id}>
       <Routes>
-        {/* Halaman Login */}
         <Route path="/" element={<Login />} />
-
-        {/* Dashboard Utama */}
         <Route path="/dashboard" element={<MainDashboard />} />
-
-        {/* Halaman Insight */}
         <Route path="/insight" element={<InsightDashboard />} />
       </Routes>
-    </BrowserRouter>
+    </InsightProvider>
+  );
+};
+
+const App = () => {
+  return (
+    <AuthProvider>
+      <BrowserRouter>
+        <AppWrapper />
+      </BrowserRouter>
+    </AuthProvider>
   );
 };
 
