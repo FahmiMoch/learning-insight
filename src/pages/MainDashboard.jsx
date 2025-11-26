@@ -4,7 +4,7 @@ import GreetingSection from "../components/layout/GreetingSection";
 import Academic from "../components/layout/Academic";
 import Learning from "../components/layout/Learning";
 import Other from "../components/layout/Other";
-import Footer from "../components/layout/Footer"; // import Footer
+import Footer from "../components/layout/Footer";
 
 export default function MainDashboard() {
   const [loading, setLoading] = useState(true);
@@ -16,10 +16,10 @@ export default function MainDashboard() {
 
   return (
     <main className="w-full min-h-screen bg-[#f2f2f2] text-[#333]">
-      
-      {/* Header */}
+
+      {/* Navbar versi HEAD tetap dipakai */}
       <Header />
-      <div className="h-[50px]"></div> {/* spacer supaya konten tidak tertutup header */}
+      <div className="h-[50px]"></div> {/* Spacer supaya konten tidak tertutup header */}
 
       {/* Greeting Section */}
       <GreetingSection 

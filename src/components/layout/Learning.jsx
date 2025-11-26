@@ -1,37 +1,37 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBell } from "@fortawesome/free-solid-svg-icons";
 
-export default function Header() {
+export default function Learning({ loading }) {
   return (
-    <header className="w-full bg-white shadow-md fixed top-0 left-0 z-50">
-      <nav className="max-w-screen-xl mx-auto px-4 lg:px-6 py-4 flex items-center gap-6">
+    <article className="bg-white p-4 rounded-xl shadow-md">
+      <h2 className="font-semibold mb-3 flex items-center gap-2">
+        <span className="w-5 h-5 bg-gray-200 rounded-md inline-block"></span>
+        Aktivitas Belajar
+      </h2>
+      <div className="h-px bg-gray-200 w-full mb-4"></div>
 
-        {/* Logo */}
-        <img src="/dicoding-logos.png" alt="Dicoding Logo" className="w-32" />
-
-        {/* Menu */}
-        <ul className="hidden md:flex items-center gap-6 ml-6 text-sm font-medium text-gray-700">
-          <li><a href="#" className="hover:text-blue-600">Home</a></li>
-          <li><a href="#" className="hover:text-blue-600">Academy</a></li>
-          <li><a href="#" className="hover:text-blue-600">Challenge</a></li>
-          <li><a href="#" className="hover:text-blue-600">Event</a></li>
-          <li><a href="#" className="hover:text-blue-600">Job</a></li>
-          <li><a href="/insight" className="hover:text-blue-600">Insight</a></li>
-        </ul>
-
-        {/* Avatar & Bell */}
-        <div className="flex items-center gap-4 ml-auto">
-          <div className="relative w-10 h-10 flex items-center justify-center">
-            <div className="absolute w-10 h-10 bg-blue-200 rounded-full z-0"></div>
-            <div className="w-6 h-6 bg-gray-300 rounded-full z-10"></div>
-          </div>
-
-          <button className="text-white hover:text-white" aria-label="Notification Button">
-            <FontAwesomeIcon icon={faBell} className="w-6 h-6 text-black" />
-          </button>
+      {loading ? (
+        <div className="space-y-3">
+          <div className="animate-pulse h-8 bg-gray-300 rounded"></div>
+          <div className="animate-pulse h-8 bg-gray-300 rounded"></div>
+          <div className="animate-pulse h-8 bg-gray-300 rounded"></div>
+          <div className="animate-pulse h-8 bg-gray-300 rounded"></div>
         </div>
-      </nav>
-    </header>
+      ) : (
+        <div className="grid grid-cols-1 gap-4">
+          <div className="bg-gray-200 p-4 rounded text-sm text-gray-700 w-[575px] h-[60px]">
+            Sedang dipelajari
+          </div>
+          <div className="bg-gray-200 p-4 rounded text-sm text-gray-700 w-[575px] h-[60px]">
+            Sedang dipelajari
+          </div>
+          <div className="bg-gray-200 p-4 rounded text-sm text-gray-700 w-[575px] h-[60px]">
+            Sedang dipelajari
+          </div>
+          <div className="bg-gray-200 p-4 rounded text-sm text-gray-700 w-[575px] h-[60px]">
+            Sedang dipelajari
+          </div>
+        </div>
+      )}
+    </article>
   );
 }
