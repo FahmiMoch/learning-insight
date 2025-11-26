@@ -1,6 +1,10 @@
 // src/services/insight.js
 import api from "./api";
 
+/**
+ * Ambil semua insight (opsional, admin) 
+ * @returns {Promise<Array>} list insight
+ */
 export const getAllInsights = async () => {
   try {
     const response = await api.get("/insights");
@@ -11,7 +15,11 @@ export const getAllInsights = async () => {
   }
 };
 
-
+/**
+ * Ambil insight berdasarkan user_id
+ * @param {string | number} userId
+ * @returns {Promise<Object>} insight + recommendation
+ */
 export const getInsightByUser = async (userId) => {
   try {
     const response = await api.get(`/insights/${userId}`);
@@ -22,7 +30,12 @@ export const getInsightByUser = async (userId) => {
   }
 };
 
-
+/**
+ * Submit atau update insight
+ * @param {string | number} userId
+ * @param {Object} payload
+ * @returns {Promise<Object>} updated insight
+ */
 export const submitInsight = async (userId, payload) => {
   try {
     const response = await api.post(`/insights/${userId}`, payload);

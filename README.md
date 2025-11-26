@@ -13,5 +13,3 @@ Dibuat dengan React, TailwindCSS, dan Vite
 Mengintegrasikan API backend untuk menampilkan data real-time
 
 Menggunakan Context API untuk state global (Auth + Insight)
-
-UI sesuai desain Figma, interaktif, dan responsif di berbagai ukuran layar.
