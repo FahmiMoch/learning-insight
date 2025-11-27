@@ -8,7 +8,6 @@ import InsightDashboard from "./src/pages/InsightDashboard";
 import { AuthProvider, useAuth } from "./src/contexts/AuthContext";
 import { InsightProvider } from "./src/contexts/InsightContext";
 
-// Wrapper untuk InsightProvider yang membutuhkan userId
 const AppWrapper = () => {
   const { user } = useAuth();
   return (
