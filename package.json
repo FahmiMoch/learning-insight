@@ -2,7 +2,7 @@
   "name": "dicoding-ai-learning-insight",
   "version": "1.0.0",
   "type": "module",
-  "description": "",
+  "description": "Frontend dari proyek **AI Learning Insight** yang menampilkan progres belajar, tipe belajar, insight, dan rekomendasi hasil analisis model Machine Learning.",
   "main": "index.js",
   "scripts": {
     "dev": "vite",
@@ -25,6 +25,7 @@
     "@fortawesome/fontawesome-svg-core": "^7.1.0",
     "@fortawesome/free-solid-svg-icons": "^7.1.0",
     "@fortawesome/react-fontawesome": "^3.1.0",
+    "@vitejs/plugin-react": "^5.1.1",
     "axios": "^1.13.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

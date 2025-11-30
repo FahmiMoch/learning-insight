@@ -4,42 +4,55 @@ import api from "./api";
 export const login = async (email, password) => {
   try {
     const response = await api.post("/auth/login", { email, password });
-    const { token, user } = response.data;
+    const { data } = response.data;
+    const { accessToken, refreshToken, user } = data;
 
-    localStorage.setItem("token", token);
+    localStorage.setItem("token", accessToken);
+    localStorage.setItem("refreshToken", refreshToken);
 
     return user;
   } catch (error) {
-    console.error("Login error:", error.response?.data || error.message);
     throw error;
   }
 };
 
 
-export const register = async (name, email, password) => {
+export const register = async (name, email, password, display_name, phone, user_role) => {
   try {
-    const response = await api.post("/auth/register", { name, email, password });
-    const { token, user } = response.data;
+    // Siapkan data registrasi sesuai dengan requirement API
+    const registrationData = {
+      name,
+      email,
+      password,
+      display_name: display_name || name,
+      phone: phone || "",
+      user_role: user_role || 1 // Default ke role 1 jika tidak disediakan
+    };
 
-    localStorage.setItem("token", token);
+    console.log("Sending registration data:", registrationData); // Debug log
+
+    const response = await api.post("/auth/register", registrationData);
+    console.log("Registration response:", response.data); // Debug log
+
+    const { data } = response.data;
+    const { accessToken, refreshToken, user } = data;
+
+    localStorage.setItem("token", accessToken);
+    localStorage.setItem("refreshToken", refreshToken);
 
     return user;
   } catch (error) {
-    console.error("Register error:", error.response?.data || error.message);
-    throw error;
-  }
-};
-
-export const getMe = async () => {
-  try {
-    const response = await api.get("/auth/me");
-    return response.data;
-  } catch (error) {
-    console.error("GetMe error:", error.response?.data || error.message);
+    // Tampilkan detail error untuk debugging
+    console.error("Register error details:", {
+      message: error.response?.data || error.message,
+      status: error.response?.status,
+      data: error.response?.data
+    });
     throw error;
   }
 };
 
 export const logout = () => {
   localStorage.removeItem("token");
+  localStorage.removeItem("refreshToken");
 };

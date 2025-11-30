@@ -1,5 +1,5 @@
-import React, { createContext, useContext, useState, useEffect } from "react"; // tambahkan React di sini
-import { getMe, logout as logoutService } from "../services/auth";
+import React, { createContext, useContext, useState, useEffect } from "react";
+import { login as loginService, logout as logoutService } from "../services/auth";
 
 const AuthContext = createContext();
 
@@ -17,8 +17,8 @@ export const AuthProvider = ({ children }) => {
       }
       try {
         setLoading(true);
-        const currentUser = await getMe();
-        setUser(currentUser);
+        // const currentUser = await loginService();
+        // setUser(currentUser);
       } catch (err) {
         console.error(err);
         setError(err);
@@ -31,13 +31,17 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const login = (userData) => setUser(userData);
+
+  const register = (userData) => setUser(userData);
+
+
   const logout = () => {
     logoutService();
     setUser(null);
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, error, login, logout }}>
+    <AuthContext.Provider value={{ user, loading, error, login, register, logout }}>
       {children}
     </AuthContext.Provider>
   );
