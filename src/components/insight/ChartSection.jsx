@@ -1,38 +1,60 @@
-// src/components/insight/ChartSection.jsx
-import React from "react";
+import React, { useMemo } from "react";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+} from "recharts";
 
-export default function ChartSection({ data = [], range, setRange }) {
-  const width = 800;
-  const height = 200;
+export default function ChartSection({ range, setRange }) {
+  // Manual Data (Strava vibe)
+  const baseData = {
+    7: [12, 18, 14, 22, 17, 19, 8],
+    14: [8, 10, 12, 15, 14, 13, 12, 18, 14, 22, 17, 19, 8, 10],
+    30: Array.from({ length: 30 }, () =>
+      Math.floor(Math.random() * (25 - 8 + 1)) + 8
+    ),
+  };
 
-  // Pastikan data tidak kosong
-  const safeData = data.length > 0 ? data : [0];
+  // Custom label 7 hari → Senin–Minggu
+  const daysLabel = ["Senin", "Selasa", "Rabu", "Kamis", "Jum'at", "Sabtu", "Minggu"];
 
-  // Max value minimal 1 untuk menghindari pembagian NaN
-  const maxValue = Math.max(...safeData, 1);
+  // data (tetap pake index)
+  const data = useMemo(() => {
+    const arr = baseData[range];
+  
+    // Ambil hanya 7 titik terakhir supaya spacing chart selalu sama
+    const sliced = arr.slice(-7);
+  
+    return sliced.map((value, i) => ({
+      index: String(i),
+      value,
+      dayLabel: daysLabel[i], // tetap 7 hari, tidak modulo
+    }));
+  }, [range]);
+  
 
-  // Step untuk posisi x
-  const step = safeData.length > 1 ? width / (safeData.length - 1) : width / 2;
-
-  // Hitung titik polyline
-  const points = safeData
-    .map((v, i) => `${i * step},${height - (v / maxValue) * height}`)
-    .join(" ");
+  
 
   return (
     <section className="max-w-6xl mx-auto bg-white p-6 rounded-xl mt-10 shadow">
       <header>
         <h2 className="font-semibold mb-1">Kegiatan Pembelajaran</h2>
-        <p className="text-sm text-gray-600 mb-4">Aktivitas Penyelesaian Materi Per Hari</p>
+        <p className="text-sm text-gray-600 mb-4">
+          Aktivitas Penyelesaian Materi Per Hari
+        </p>
       </header>
 
       {/* Range Buttons */}
-      <div className="flex gap-3 mb-5">
+      <div className="flex gap-3 mb-5 justify-end">
         {[7, 14, 30].map((r) => (
           <button
             key={r}
             onClick={() => setRange(r)}
-            className={`px-3 py-1 rounded-lg border ${
+            className={`px-3 py-1 rounded-lg border transition ${
               range === r
                 ? "bg-blue-600 text-white"
                 : "bg-white text-gray-600 hover:bg-gray-100"
@@ -43,20 +65,60 @@ export default function ChartSection({ data = [], range, setRange }) {
         ))}
       </div>
 
-      {/* SVG Chart */}
-      <figure className="overflow-x-auto">
-        <svg width={width} height={height}>
-          <polyline fill="none" stroke="#2563eb" strokeWidth="3" points={points} />
-          {safeData.map((v, i) => (
-            <circle
-              key={i}
-              cx={i * step}
-              cy={height - (v / maxValue) * height}
-              r="4"
-              fill="#2563eb"
+      <figure className="w-full h-64">
+        <ResponsiveContainer width="100%" height="100%">
+          <LineChart data={data} margin={{ top: 20, right: 15, left: -10 }}>
+            <CartesianGrid
+              stroke="#e5e5e5"
+              strokeDasharray="3 3"
+              vertical={false}
             />
-          ))}
-        </svg>
+
+<XAxis
+  dataKey="index"
+  type="category"
+  scale="point"
+  padding={{ left: -12, right: 20 }}
+  ticks={["0","1","2","3","4","5","6"]}
+  tickFormatter={(i) => daysLabel[Number(i) % 7]}
+  interval={0}
+  tick={{ fontSize: 12, fill: "#666", dy: 10 }}   // <--- geser ke bawah
+  tickLine={false}
+  axisLine={false}
+/>
+
+
+
+
+            {/* --------------------------------------- */}
+
+            <YAxis
+              tick={{ fontSize: 12, fill: "#666" }}
+              tickLine={false}
+              axisLine={false}
+            />
+
+            <Tooltip
+              contentStyle={{
+                borderRadius: "10px",
+                border: "1px solid #ddd",
+                fontSize: "12px",
+              }}
+            />
+
+            <Line
+              type="monotone"
+              dataKey="value"
+              stroke="#0052D5"
+              strokeWidth={4}
+              dot={false}
+              activeDot={{ r: 6, fill: "#0052D5" }}
+              style={{
+                filter: "drop-shadow(0px 0px 5px rgba(0, 82, 213, 0.5))",
+              }}
+            />
+          </LineChart>
+        </ResponsiveContainer>
       </figure>
     </section>
   );

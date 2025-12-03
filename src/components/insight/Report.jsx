@@ -17,17 +17,33 @@ export default function Report() {
       >
         {/* Info User */}
         <article>
-          <h1 className="text-3xl font-semibold">Laporan Mingguan</h1>
-          <p className="mt-2 text-lg">Halo, Mochamad Fahmi</p>
+  <h1 className="text-3xl font-semibold">Laporan Mingguan</h1>
+  <p className="mt-2 text-lg">Halo, Mochamad Fahmi</p>
 
-          <p className="mt-1 flex items-center gap-2 text-sm">
-            ⚡ <span>Fast Learner</span>
-          </p>
+  <p className="mt-1 flex items-center gap-2 text-sm">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={1.5}
+      stroke="currentColor"
+      className="size-4"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z"
+      />
+    </svg>
 
-          <p className="mt-3 text-sm opacity-90">
-            Belajarmu sangat cepat, jangan lupa dibaca ulang ya!
-          </p>
-        </article>
+    <span>Fast Learner</span>
+  </p>
+
+  <p className="mt-3 text-sm opacity-90">
+    Belajarmu sangat cepat, jangan lupa dibaca ulang ya!
+  </p>
+</article>
+
 
         {/* Info Statistik */}
         <aside className="bg-white/20 backdrop-blur p-4 rounded-xl w-40 text-center border border-white/30">

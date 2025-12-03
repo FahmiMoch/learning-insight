@@ -5,20 +5,103 @@ import React from "react";
 function SummaryCard({ title, value, icon }) {
   return (
     <article className="bg-[#1c4465] text-white p-5 rounded-xl shadow">
-      <div className="text-2xl mb-2">{icon}</div>
-      <p className="text-sm">{title}</p>
-      <h3 className="text-xl font-bold">{value}</h3>
+      {/* Row: Icon + Title */}
+      <div className="flex items-center gap-3">
+        <div className="text-2xl">{icon}</div>
+        <p className="text-sm">{title}</p>
+      </div>
+
+      {/* Value — turun ke bawah */}
+      <h3 className="text-xl font-bold mt-2">{value}</h3>
     </article>
   );
 }
 
+
 export default function SummarySection() {
   const summaries = [
-    { title: "Kecepatan Belajar", value: "10 Materi", icon: "⚡" },
-    { title: "Konsistensi", value: "6 Hari Aktif", icon: "📅" },
-    { title: "Rata - Rata", value: "90 Menit", icon: "⏱️" },
-    { title: "Evaluasi", value: "90 / A", icon: "📊" },
+    {
+      title: "Kecepatan Belajar",
+      value: "10 Materi",
+      icon: (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="size-6"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z"
+          />
+        </svg>
+      ),
+    },
+    {
+      title: "Konsistensi",
+      value: "6 Hari Aktif",
+      icon: (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="size-6"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M6.75 3v2.25M17.25 3v2.25M3 9h18M4.5 19.5h15a1.5 1.5 0 0 0 1.5-1.5V9.75H3v8.25a1.5 1.5 0 0 0 1.5 1.5Z"
+          />
+        </svg>
+      ),
+    },
+    {
+      title: "Rata - Rata",
+      value: "90 Menit",
+      icon: (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="size-6"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M12 6v6l3 3m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+          />
+        </svg>
+      ),
+    },
+    {
+      title: "Evaluasi",
+      value: "90 / A",
+      icon: (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="size-6"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M3 3v18h18M7.5 15l3-3 2.25 2.25L18 9"
+          />
+        </svg>
+      ),
+    },
   ];
+  
 
   return (
     <section className="w-full mt-10">

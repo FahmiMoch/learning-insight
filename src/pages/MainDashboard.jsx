@@ -19,7 +19,7 @@ export default function MainDashboard() {
 
       {/* Header */}
       <Header />
-      <div className="h-[50px]"></div> {/* spacer supaya konten tidak tertutup header */}
+      <div className="h-[50px]"></div> 
 
       {/* Greeting Section */}
       <GreetingSection 

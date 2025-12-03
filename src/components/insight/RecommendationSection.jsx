@@ -3,11 +3,14 @@ import React from "react";
 
 function RecoCard({ title, desc }) {
   return (
-    <article className="bg-white p-5 rounded-xl shadow">
-      <h3 className="font-semibold text-lg">{title}</h3>
-      <p className="text-sm text-gray-600 mt-1">{desc}</p>
-      <button className="mt-3 text-blue-600 text-sm hover:underline">Lihat detail</button>
-    </article>
+    <article className="bg-white p-5 rounded-xl shadow mb-10">
+    <h3 className="font-semibold text-lg">{title}</h3>
+    <p className="text-sm text-gray-600 mt-1">{desc}</p>
+    <button className="mt-3 text-blue-600 text-sm hover:underline">
+      Lihat detail
+    </button>
+  </article>
+  
   );
 }
 
@@ -15,11 +18,11 @@ export default function RecommendationSection() {
   const recommendations = [
     {
       title: "Konsistensi Mingguan Sangat Baik",
-      desc: "Durasi belajar sudah ideal. Pertahankan ritme ini.",
+      desc: "Durasinya sudah ideal untuk terus fokus maksimal. Pertahankan ritme ini dan pastikan kamu istirahat 5-10 menit setiap sesi.",
     },
     {
       title: "Durasi Belajar Sudah Optimal",
-      desc: "6 hari aktif menunjukkan dedikasimu. Ambil 1 hari istirahat penuh.",
+      desc: "6 hari aktif menunjukkan dedikasi yang tinggi. Luangkan 1 hari istirahat penuh agar bisa tetap produktif.",
     },
   ];
 

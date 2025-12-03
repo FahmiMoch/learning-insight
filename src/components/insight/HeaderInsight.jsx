@@ -15,12 +15,12 @@ export default function HeaderInsight() {
 
         {/* Menu */}
         <ul className="hidden md:flex items-center gap-6 ml-6 text-sm font-medium text-gray-700">
-          <li><a href="#" className="hover:text-blue-600">Home</a></li>
+          <li><a href="/dashboard" className="hover:text-blue-600">Home</a></li>
           <li><a href="#" className="hover:text-blue-600">Academy</a></li>
           <li><a href="#" className="hover:text-blue-600">Challenge</a></li>
           <li><a href="#" className="hover:text-blue-600">Event</a></li>
           <li><a href="#" className="hover:text-blue-600">Job</a></li>
-          <li><a href="/insight" className="hover:text-blue-600">Insight</a></li>
+          <li><a href="#" className="hover:text-blue-600">Insight</a></li>
         </ul>
 
         {/* User / Notification */}
